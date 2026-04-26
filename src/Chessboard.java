@@ -98,12 +98,13 @@ public class Chessboard {
     }
     //Loads image from the resource folder src/main/resource/ChessPieceImages
     private ImageIcon loadImage(String filename) {
-        // System print to find the classpath root, where the ide searches for resources
-        //System.out.println(getClass().getClassLoader().getResource(""));
         //May need to change the exact path name if your images are stored in a different location, may need some trial and error
         URL imgURL = getClass().getClassLoader().getResource(filename);
         // Returns an exception if the img could not be loaded
         if (imgURL == null) {
+            System.out.println("PNG's must be stored in:");
+            // System print to find the classpath root, where the ide searches for resources
+            System.out.println(getClass().getClassLoader().getResource(""));
             throw new RuntimeException("Image not found: " + filename);
         }
         return new ImageIcon(new ImageIcon(imgURL).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH));
